@@ -8,5 +8,16 @@ import com.lancer.wanandroid.bean.ProjectListBean;
  */
 public interface ProjectListView {
 
+    /**
+     * p
+     * @param response
+     * @param type
+     */
     void setProjectListArticle(ProjectListBean response, int type);
+
+    /**
+     * 没有更多数据加载方法
+     */
+    void onLoadMoreEnd();
+
 }

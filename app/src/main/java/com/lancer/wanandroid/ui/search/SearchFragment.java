@@ -2,10 +2,8 @@ package com.lancer.wanandroid.ui.search;
 
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -56,7 +54,7 @@ public class SearchFragment extends BaseFragment<SearchView, SearchPresenter> im
         mIvBackSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pop();//todo
+               _mActivity.onBackPressed();
             }
         });
         mTvSearch.setOnClickListener(new View.OnClickListener() {
@@ -78,45 +76,6 @@ public class SearchFragment extends BaseFragment<SearchView, SearchPresenter> im
             }
         });
     }
-    @Override
-    public void onResume() {
-        super.onResume();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
-        Log.d("serachFragment", "onResume");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-        Log.d("serachFragment", "onStop");
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d("serachFragment", "onPause");
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.d("serachFragment", "onDestroyView");
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        Log.d("serachFragment", "onDetach");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d("serachFragment", "onDestroy");
-    }
-
-
     @Override
     public SearchPresenter createPresenter() {
         return new SearchPresenter();

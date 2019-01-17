@@ -13,6 +13,7 @@ import com.lancer.wanandroid.R;
 import com.lancer.wanandroid.adapter.ProjectListAdapter;
 import com.lancer.wanandroid.base.BaseFragment;
 import com.lancer.wanandroid.bean.ProjectListBean;
+import com.lancer.wanandroid.ui.main.MainFragment;
 import com.lancer.wanandroid.ui.web.WebFragment;
 import com.lancer.wanandroid.util.Constant;
 
@@ -60,6 +61,12 @@ public class ProjectListFragment extends BaseFragment<ProjectListView, ProjectLi
         mRecycleProjectList.setAdapter(mProjectListAdapter = new ProjectListAdapter(R.layout.item_project_list, mLists));
         mProjectListAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT);
         mProjectListAdapter.isFirstOnly(false);
+        mProjectListAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+                mPresenter.loadMore(id);
+            }
+        }, mRecycleProjectList);
     }
 
     @Override
@@ -85,11 +92,15 @@ public class ProjectListFragment extends BaseFragment<ProjectListView, ProjectLi
     public void setProjectListArticle(ProjectListBean response, int type) {
         if (type == Constant.STATUS_NORMAL) {
             mProjectListAdapter.setNewData(response.getData().getDatas());
-            mProjectListAdapter.loadMoreComplete();
         } else if (type == Constant.STATUS_LOAD_MORE) {
             mProjectListAdapter.addData(response.getData().getDatas());
             mProjectListAdapter.loadMoreComplete();
         }
+    }
+
+    @Override
+    public void onLoadMoreEnd() {
+        mProjectListAdapter.loadMoreEnd();
     }
 
     @Override
@@ -102,6 +113,6 @@ public class ProjectListFragment extends BaseFragment<ProjectListView, ProjectLi
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 
         //todo 两层嵌套找到最原始的父空间
-        ((SupportFragment) getParentFragment().getParentFragment()).start(WebFragment.newInstance(mProjectListAdapter.getItem(position).getLink(), mProjectListAdapter.getItem(position).getTitle(), mProjectListAdapter.getItem(position).getId(), false));
+        ((MainFragment) getParentFragment().getParentFragment()).start(WebFragment.newInstance(mProjectListAdapter.getItem(position).getLink(), mProjectListAdapter.getItem(position).getTitle(), mProjectListAdapter.getItem(position).getId(), false));
     }
 }

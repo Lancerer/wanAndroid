@@ -36,16 +36,17 @@ public class KnowledgePresenter extends BasePresenter<KnowledgeView> {
     public void getKnowledge() {
         if (mKnowledgeView == null) {
             mKnowledgeView = getView();
-            RetrofitUtils.create(ApiService.class)
-                    .getKnowledge()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new BaseObserver<KnowledgeBean>() {
-                        @Override
-                        public void onsuccess(KnowledgeBean response) {
-                            mKnowledgeView.setKnowledge(response);
-                        }
-                    });
         }
+        RetrofitUtils.create(ApiService.class)
+                .getKnowledge()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseObserver<KnowledgeBean>() {
+                    @Override
+                    public void onsuccess(KnowledgeBean response) {
+                        mKnowledgeView.setKnowledge(response);
+                    }
+                });
+
     }
 }

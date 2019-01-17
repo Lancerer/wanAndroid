@@ -3,10 +3,12 @@ package com.lancer.wanandroid.net;
 
 import com.lancer.wanandroid.bean.Article;
 import com.lancer.wanandroid.bean.BannerBean;
+import com.lancer.wanandroid.bean.DataResponse;
 import com.lancer.wanandroid.bean.KnowledgeBean;
 import com.lancer.wanandroid.bean.NavigationBean;
 import com.lancer.wanandroid.bean.ProjectListBean;
 import com.lancer.wanandroid.bean.ProjectTabBean;
+import com.lancer.wanandroid.bean.User;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -83,12 +85,6 @@ public interface ApiService {
      */
     @GET("/navi/json")
     Observable<NavigationBean> getNavigation();
-   /* //注册
-    @POST("/user/register")
-    @FormUrlEncoded
-    Observable<Use> register(@Field("username") String username, @Field("password") String password, @Field("repassword") String repassword);
-*/
-
 
     /**
      * 搜索功能接口
@@ -101,5 +97,51 @@ public interface ApiService {
     @FormUrlEncoded
     Observable<Article> getSearchArticles(@Path("page") int page, @Field("k") String k);
 
+    /**
+     * 用户登录接口
+     *
+     * @param username
+     * @param password
+     * @return
+     */
+    @POST("/user/login")
+    @FormUrlEncoded
+    Observable<User> toLogin(@Field("username") String username, @Field("password") String password);
 
+    /**
+     * 用户注册接口
+     *
+     * @param username
+     * @param password
+     * @param repassword
+     * @return
+     */
+    @POST("/user/register")
+    @FormUrlEncoded
+    Observable<User> toRegister(@Field("username") String username, @Field("password") String password, @Field("repassword") String repassword);
+
+
+    /**
+     * 我的收藏
+     *
+     * @param page
+     * @return
+     */
+    @GET("/lg/collect/list/{page}/json")
+    Observable<Article> getCollects(@Path("page") int page);
+
+
+    /**
+     *添加收藏
+     */
+    @POST("/lg/collect/{id}/json")
+    Observable<DataResponse> addCollect(@Path("id") int id);
+
+    /**
+     * 取消收藏
+     */
+
+    @POST("/lg/uncollect/{id}/json")
+    @FormUrlEncoded
+    Observable<DataResponse> removeCollect(@Path("id") int id, @Field("originId") int originId);
 }

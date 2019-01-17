@@ -44,17 +44,18 @@ public class HomePresenter extends BasePresenter<HomeView> {
     public void getBanner() {
         if (mHomeView == null) {
             mHomeView = getView();
-            RetrofitUtils.create(ApiService.class)
-                    .getBanner()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new BaseObserver<BannerBean>() {
-                        @Override
-                        public void onsuccess(BannerBean response) {
-                            mHomeView.setBanner(response.getData());
-                        }
-                    });
         }
+        RetrofitUtils.create(ApiService.class)
+                .getBanner()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseObserver<BannerBean>() {
+                    @Override
+                    public void onsuccess(BannerBean response) {
+                        mHomeView.setBanner(response.getData());
+                    }
+                });
+
     }
 
     /**

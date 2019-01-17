@@ -52,6 +52,8 @@ public class KnowledgeFragment extends BaseFragment<KnowledgeView, KnowledgePres
         mPresenter.getKnowledge();
         mRecycleKnowledge.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycleKnowledge.setAdapter(mKnowledgeAdapter = new KnowledgeAdapter(R.layout.item_knowledge, mList));
+        mKnowledgeAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_RIGHT);
+        mKnowledgeAdapter.isFirstOnly(false);
 
 
     }

@@ -17,4 +17,14 @@ public class Constant {
      * 正常状态
      */
     public static final int STATUS_NORMAL = 1;
+
+    /**
+     * sp key
+     */
+    public static final String CONFIGFILE = "config";
+
+    public static final String LOGIN = "login";
+
+    public static final String USERNAME = "username";
+    public static final String PASSWORD = "password";
 }

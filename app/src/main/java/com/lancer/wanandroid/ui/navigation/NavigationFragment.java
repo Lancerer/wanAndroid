@@ -64,7 +64,7 @@ public class NavigationFragment extends BaseFragment<NavigationView, NavigationP
     public void setNavigation(NavigationBean respone) {
         mNavigationAdapter.setNewData(respone.getData());
 
-        mFlowlayout.setAdapter(mMyAdapter = new MyAdapter(respone.getData()));
+       // mFlowlayout.setAdapter(mMyAdapter = new MyAdapter(respone.getData().get()));
     }
 
     @Override
@@ -72,19 +72,19 @@ public class NavigationFragment extends BaseFragment<NavigationView, NavigationP
 
     }
 
-    private class MyAdapter extends TagAdapter<NavigationBean.DataBean> {
+    private class MyAdapter extends TagAdapter<NavigationBean.DataBean.ArticlesBean> {
 
-        private List<NavigationBean.DataBean> lists;
+        private List<NavigationBean.DataBean.ArticlesBean> lists;
 
-        public MyAdapter(List<NavigationBean.DataBean> datas) {
+        public MyAdapter(List<NavigationBean.DataBean.ArticlesBean> datas) {
             super(datas);
             this.lists = datas;
         }
 
         @Override
-        public View getView(FlowLayout parent, int position, NavigationBean.DataBean articlesBean) {
+        public View getView(FlowLayout parent, int position, NavigationBean.DataBean.ArticlesBean articlesBean) {
             TextView textView = (TextView) View.inflate(getContext(), R.layout.item_navigation_right, null);
-            textView.setText(lists.get(position).getArticles().get(0).getTitle());
+            textView.setText(articlesBean.getTitle());
             return textView;
         }
     }

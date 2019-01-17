@@ -34,17 +34,18 @@ public class ProjectPresenter extends BasePresenter<ProjectView> {
     public void getProjectTab() {
         if (mProjectView == null) {
             mProjectView = getView();
-            RetrofitUtils.create(ApiService.class)
-                    .getProjectTab()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new BaseObserver<ProjectTabBean>() {
-                        @Override
-                        public void onsuccess(ProjectTabBean response) {
-                            mProjectView.setPOrojectTab(response);
-                        }
-                    });
-
         }
+        RetrofitUtils.create(ApiService.class)
+                .getProjectTab()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseObserver<ProjectTabBean>() {
+                    @Override
+                    public void onsuccess(ProjectTabBean response) {
+                        mProjectView.setPOrojectTab(response);
+                    }
+                });
+
+
     }
 }

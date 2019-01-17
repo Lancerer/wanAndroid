@@ -8,15 +8,19 @@ import android.content.Context;
  * desc
  */
 public class MyApplication extends Application {
-    private Context mContext;
+    private static MyApplication myApplication;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        myApplication = this;
     }
 
-    public Context getAppContext() {
-        mContext = getApplicationContext();
-        return mContext;
+    public static Context getAppContext() {
+        return myApplication.getApplicationContext();
+    }
+
+    public static MyApplication getInstance() {
+        return myApplication;
     }
 }

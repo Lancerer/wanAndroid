@@ -4,13 +4,14 @@
     android:layout_height="50dp"
     android:orientation="vertical">
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/iv_login"
         android:layout_width="30dp"
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:layout_marginLeft="8dp"
-        android:src="@drawable/aboutme" />
+        android:padding="3dp"
+        android:src="@drawable/login_user" />-->
 
     <TextView
         android:id="@+id/tv_title_header"
@@ -18,9 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="15dp"
-        android:layout_toRightOf="@id/iv_login"
         android:text="@string/home"
-        android:textSize="22sp" />
+        android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/iv_search"
@@ -28,7 +28,13 @@
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:padding="2dp"
         android:src="@drawable/icon_search" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ccc"
+        android:layout_alignParentBottom="true"/>
 
 
 </RelativeLayout>

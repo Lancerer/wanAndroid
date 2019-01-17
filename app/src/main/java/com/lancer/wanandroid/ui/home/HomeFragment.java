@@ -15,6 +15,7 @@ import com.lancer.wanandroid.adapter.HomeAdapter;
 import com.lancer.wanandroid.base.BaseFragment;
 import com.lancer.wanandroid.bean.Article;
 import com.lancer.wanandroid.bean.BannerBean;
+import com.lancer.wanandroid.ui.main.MainFragment;
 import com.lancer.wanandroid.ui.web.WebFragment;
 import com.lancer.wanandroid.util.Constant;
 import com.lancer.wanandroid.util.MyLoader;
@@ -53,8 +54,6 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
 
         mRefreshHome = view.findViewById(R.id.refresh_home);
         mRecycleHome = view.findViewById(R.id.recycle_home);
-        mBannerView = LayoutInflater.from(getContext()).inflate(R.layout.item_bannerhead, null);
-        mBanner = mBannerView.findViewById(R.id.banner);
     }
 
     @Override
@@ -68,10 +67,12 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
 
         mRecycleHome.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycleHome.setAdapter(mHomeAdapter = new HomeAdapter(R.layout.item_home, mArticles));
-        //todo bug
+        /*//todo bug
         if (mBannerView.getParent() != null) {
             ((ViewGroup) mBannerView.getParent()).removeView(mBannerView);
-        }
+        }*/
+        mBannerView = LayoutInflater.from(getContext()).inflate(R.layout.item_bannerhead, null);
+        mBanner = mBannerView.findViewById(R.id.banner);
         mHomeAdapter.addHeaderView(mBannerView);
         mHomeAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
         //动画默认只执行一次,如果想重复执行可设置
@@ -134,7 +135,7 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
                 .setOnBannerListener(new OnBannerListener() {
                     @Override
                     public void OnBannerClick(int position) {
-                        ((SupportFragment) getParentFragment()).start(WebFragment.newInstance(data.get(position).getUrl(), data.get(position).getTitle(), data.get(position).getId(), false));
+                        ((MainFragment) getParentFragment()).start(WebFragment.newInstance(data.get(position).getUrl(), data.get(position).getTitle(), data.get(position).getId(), false));
                     }
                 })
                 .start();
@@ -188,6 +189,6 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         //todo
-        ((SupportFragment) getParentFragment()).start(WebFragment.newInstance(mHomeAdapter.getItem(position).getLink(), mHomeAdapter.getItem(position).getTitle(), mHomeAdapter.getItem(position).getId(), false));
+        ((MainFragment) getParentFragment()).start(WebFragment.newInstance(mHomeAdapter.getItem(position).getLink(), mHomeAdapter.getItem(position).getTitle(), mHomeAdapter.getItem(position).getId(), false));
     }
 }

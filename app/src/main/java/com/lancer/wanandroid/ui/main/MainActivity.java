@@ -17,7 +17,7 @@ import com.lancer.wanandroid.ui.search.SearchFragment;
 
 
 public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+       /* implements NavigationView.OnNavigationItemSelectedListener */{
 
     private Toolbar mToolbar;
 
@@ -33,22 +33,23 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void initData() {
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+    /*    ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawer.addDrawerListener(toggle);
-        toggle.syncState();
+        toggle.syncState();*/
 
         //启动主Fragment
         loadRootFragment(R.id.fl_pool, MainFragment.newInstance());
+
 
     }
 
     @Override
     public void initView() {
-        mToolbar = findViewById(R.id.toolbar);
+      /*  mToolbar = findViewById(R.id.toolbar);
         mDrawer = findViewById(R.id.drawer_layout);
         mNavigationView = findViewById(R.id.nav_view);
-        setSupportActionBar(mToolbar);
+        setSupportActionBar(mToolbar);*/
         mFlPool = findViewById(R.id.fl_pool);
     }
 
@@ -58,18 +59,18 @@ public class MainActivity extends BaseActivity
         return null;
     }
 
-    @Override
+/*    @Override
     public void initListener() {
         mNavigationView.setNavigationItemSelectedListener(this);
 
     }
 
-    /**
+    *//**
      * 将menu和toolbar绑定
      *
      * @param menu
      * @return
-     */
+     *//*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -116,5 +117,5 @@ public class MainActivity extends BaseActivity
         } else {
             super.onBackPressedSupport();
         }
-    }
+    }*/
 }

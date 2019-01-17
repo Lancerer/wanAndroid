@@ -11,8 +11,10 @@ import com.lancer.wanandroid.base.BaseFragment;
 import com.lancer.wanandroid.base.BasePresenter;
 import com.lancer.wanandroid.ui.home.HomeFragment;
 import com.lancer.wanandroid.ui.knowledge.KnowledgeFragment;
+import com.lancer.wanandroid.ui.login.LoginFragment;
 import com.lancer.wanandroid.ui.navigation.NavigationFragment;
 import com.lancer.wanandroid.ui.project.ProjectFragment;
+import com.lancer.wanandroid.ui.search.SearchFragment;
 
 import me.yokeyword.fragmentation.SupportFragment;
 
@@ -20,13 +22,15 @@ public class MainFragment extends BaseFragment implements BottomNavigationBar.On
     private android.widget.FrameLayout mMainfragmentPool;
     private com.ashokvarma.bottomnavigation.BottomNavigationBar mBottomView;
 
-    private int lables[] = {R.string.home, R.string.knowledge, R.string.navigation, R.string.project};
+    private int lables[] = {R.string.home, R.string.knowledge, R.string.project, R.string.login};
 
     public static final int FIRST = 0;
     public static final int SECOND = 1;
     public static final int THIRD = 2;
     public static final int FOURTH = 3;
     private SupportFragment[] mFragments = new SupportFragment[4];
+    private android.widget.TextView mTvTitleHeader;
+    private android.widget.ImageView mIvSearch;
 
 
     @Override
@@ -38,7 +42,10 @@ public class MainFragment extends BaseFragment implements BottomNavigationBar.On
     public void initView(View view) {
         mMainfragmentPool = view.findViewById(R.id.mainfragment_pool);
         mBottomView = view.findViewById(R.id.bottom_view);
-        getActivity().setTitle(lables[0]);
+
+        mTvTitleHeader = view.findViewById(R.id.tv_title_header);
+        mIvSearch = view.findViewById(R.id.iv_search);
+        mTvTitleHeader.setText(lables[0]);
     }
 
     @Override
@@ -54,8 +61,8 @@ public class MainFragment extends BaseFragment implements BottomNavigationBar.On
 
         mBottomView.addItem(new BottomNavigationItem(R.drawable.home, R.string.home))
                 .addItem(new BottomNavigationItem(R.drawable.knowledge, R.string.knowledge))
-                .addItem(new BottomNavigationItem(R.drawable.navigation, R.string.navigation))
-                .addItem(new BottomNavigationItem(R.drawable.project, R.string.project))
+                .addItem(new BottomNavigationItem(R.drawable.navigation, R.string.project))
+                .addItem(new BottomNavigationItem(R.drawable.project, R.string.login))
                 .initialise();
 
 
@@ -64,8 +71,8 @@ public class MainFragment extends BaseFragment implements BottomNavigationBar.On
         if (firstFragment == null) {
             mFragments[FIRST] = HomeFragment.newInstance();
             mFragments[SECOND] = KnowledgeFragment.newInstance();
-            mFragments[THIRD] = NavigationFragment.newInstance();
-            mFragments[FOURTH] = ProjectFragment.newInstance();
+            mFragments[THIRD] = ProjectFragment.newInstance();
+            mFragments[FOURTH] = LoginFragment.newInstance();
 
 
             loadMultipleRootFragment(R.id.mainfragment_pool, FIRST,
@@ -73,18 +80,23 @@ public class MainFragment extends BaseFragment implements BottomNavigationBar.On
                     mFragments[SECOND],
                     mFragments[THIRD],
                     mFragments[FOURTH]);
-        }else {
+        } else {
             mFragments[FIRST] = firstFragment;
             mFragments[SECOND] = findFragment(KnowledgeFragment.class);
-            mFragments[THIRD] = findFragment(NavigationFragment.class);
-            mFragments[FOURTH] = findFragment(ProjectFragment.class);
+            mFragments[THIRD] = findFragment(ProjectFragment.class);
+            mFragments[FOURTH] = findFragment(LoginFragment.class);
         }
 
     }
 
     @Override
     public void initListener() {
-
+        mIvSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                start(SearchFragment.newInstance());
+            }
+        });
     }
 
     @Override
@@ -106,7 +118,7 @@ public class MainFragment extends BaseFragment implements BottomNavigationBar.On
      */
     @Override
     public void onTabSelected(int position) {
-        getActivity().setTitle(lables[position]);
+        mTvTitleHeader.setText(lables[position]);
         showHideFragment(mFragments[position]);
 
     }

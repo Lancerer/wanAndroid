@@ -16,6 +16,7 @@ import java.util.List;
  * desc
  */
 public class ProjectListAdapter extends BaseQuickAdapter<ProjectListBean.DataBean.DatasBean, BaseViewHolder> {
+
     public ProjectListAdapter(int layoutResId, @Nullable List<ProjectListBean.DataBean.DatasBean> data) {
         super(layoutResId, data);
     }

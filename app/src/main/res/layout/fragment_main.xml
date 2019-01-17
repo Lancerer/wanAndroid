@@ -5,10 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainFragment">
 
+    <include layout="@layout/common_header"
+        android:id="@+id/header"
+        />
+
     <FrameLayout
         android:id="@+id/mainfragment_pool"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/header"
         android:layout_above="@id/bottom_view" />
 
     <com.ashokvarma.bottomnavigation.BottomNavigationBar

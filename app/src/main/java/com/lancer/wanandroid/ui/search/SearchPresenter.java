@@ -35,6 +35,7 @@ public class SearchPresenter extends BasePresenter<SearchView> {
     public void getSearch(String str) {
         if (mSearchView == null) {
             mSearchView = getView();
+        }
             RetrofitUtils.create(ApiService.class)
                     .getSearchArticles(page, str)
                     .subscribeOn(Schedulers.io())
@@ -45,7 +46,5 @@ public class SearchPresenter extends BasePresenter<SearchView> {
                             mSearchView.setSearch(response);
                         }
                     });
-
-        }
     }
 }

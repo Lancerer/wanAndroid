@@ -45,20 +45,6 @@ public class BannerBean {
     }
 
     public static class DataBean {
-        @Override
-        public String toString() {
-            return "DataBean{" +
-                    "desc='" + desc + '\'' +
-                    ", id=" + id +
-                    ", imagePath='" + imagePath + '\'' +
-                    ", isVisible=" + isVisible +
-                    ", order=" + order +
-                    ", title='" + title + '\'' +
-                    ", type=" + type +
-                    ", url='" + url + '\'' +
-                    '}';
-        }
-
         /**
          * desc :
          * id : 18
@@ -69,8 +55,6 @@ public class BannerBean {
          * type : 0
          * url : http://www.wanandroid.com/wxarticle/list/408/1
          */
-
-
         private String desc;
         private int id;
         private String imagePath;
@@ -142,6 +126,19 @@ public class BannerBean {
 
         public void setUrl(String url) {
             this.url = url;
+        }
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "desc='" + desc + '\'' +
+                    ", id=" + id +
+                    ", imagePath='" + imagePath + '\'' +
+                    ", isVisible=" + isVisible +
+                    ", order=" + order +
+                    ", title='" + title + '\'' +
+                    ", type=" + type +
+                    ", url='" + url + '\'' +
+                    '}';
         }
     }
 }
