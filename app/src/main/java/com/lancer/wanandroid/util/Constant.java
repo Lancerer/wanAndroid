@@ -27,4 +27,10 @@ public class Constant {
 
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
+
+    public static final int ERROR_NULL = 1;
+    public static final int ERROR = -1;
+
+    public static final int COLLECT = 1;
+    public static final int UNCOLLECT = -1;
 }

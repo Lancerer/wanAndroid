@@ -24,7 +24,7 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * a simple {@link Fragment} subclass.
  */
 public class ProjectListFragment extends BaseFragment<ProjectListView, ProjectListPresenter> implements ProjectListView, SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.OnItemClickListener {
     private static final String ID = "id";

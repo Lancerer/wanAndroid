@@ -30,15 +30,15 @@ public abstract class BaseFragment<V, T extends BasePresenter<V>> extends Suppor
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(initLayout(), container, false);
         initView(rootView);
-
+        initData();
+        initListener();
         return rootView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        initData();
-        initListener();
+
     }
 
     public void initListener() {

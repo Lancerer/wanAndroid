@@ -11,4 +11,6 @@ public interface SearchView {
      * @param data
      */
     void setSearch(Article data);
+
+    void setError(String errorMsg, int code);
 }

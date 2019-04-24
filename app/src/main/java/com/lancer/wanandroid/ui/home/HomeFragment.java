@@ -30,7 +30,7 @@ import java.util.List;
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
- * A simple {@link Fragment} subclass.
+ * a simple {@link Fragment} subclass.
  */
 public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implements HomeView, SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener, BaseQuickAdapter.OnItemClickListener {
 
@@ -67,10 +67,6 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
 
         mRecycleHome.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycleHome.setAdapter(mHomeAdapter = new HomeAdapter(R.layout.item_home, mArticles));
-        /*//todo bug
-        if (mBannerView.getParent() != null) {
-            ((ViewGroup) mBannerView.getParent()).removeView(mBannerView);
-        }*/
         mBannerView = LayoutInflater.from(getContext()).inflate(R.layout.item_bannerhead, null);
         mBanner = mBannerView.findViewById(R.id.banner);
         mHomeAdapter.addHeaderView(mBannerView);

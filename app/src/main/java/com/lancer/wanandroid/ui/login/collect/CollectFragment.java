@@ -78,11 +78,14 @@ public class CollectFragment extends BaseFragment<CollectView, CollectPresenter>
 
     @Override
     public void onRefresh() {
+        mPresenter.getCollect();
+        mHomeAdapter.notifyDataSetChanged();
         mRefreshCollect.setRefreshing(false);
+
     }
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-      start(WebFragment.newInstance(mHomeAdapter.getItem(position).getLink(),mHomeAdapter.getItem(position).getTitle(),mHomeAdapter.getItem(position).getId(),false));
+      start(WebFragment.newInstance(mHomeAdapter.getItem(position).getLink(),mHomeAdapter.getItem(position).getTitle(),mHomeAdapter.getItem(position).getId(),true));
     }
 }

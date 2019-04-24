@@ -7,5 +7,5 @@ package com.lancer.wanandroid.ui.web;
 public interface WebContentView {
     void onError(String errorMsg);
 
-    void onSuccess(String msg);
+    void onSuccess(String msg, int code);
 }

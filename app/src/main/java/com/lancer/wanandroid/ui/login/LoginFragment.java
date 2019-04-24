@@ -77,7 +77,6 @@ public class LoginFragment extends BaseFragment<LoginView, LoginPresenter> imple
             Sputils.setBoolean(getContext(), Constant.LOGIN, false);
             mTvLogin.setText("登录");
         } else {
-            //todo 跳转到登录界面
             ((MainFragment) getParentFragment()).start(RegisterFragment.newInstance());
         }
 

@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:paddingTop="5dp"
         android:layout_height="30dp"
+        android:textStyle="bold"
         android:textSize="18sp" />
 
     <android.support.design.widget.TabLayout
@@ -17,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabIndicatorColor="@android:color/transparent"
-        app:tabSelectedTextColor="#000000"
+        app:tabSelectedTextColor="#FF4500"
         app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
         app:tabTextColor="#CCC" />
 

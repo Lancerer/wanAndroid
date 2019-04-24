@@ -5,6 +5,7 @@ import com.lancer.wanandroid.bean.DataResponse;
 import com.lancer.wanandroid.net.ApiService;
 import com.lancer.wanandroid.net.BaseObserver;
 import com.lancer.wanandroid.net.RetrofitUtils;
+import com.lancer.wanandroid.util.Constant;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -43,9 +44,9 @@ public class WebPresenter extends BasePresenter<WebContentView> {
                     @Override
                     public void onsuccess(DataResponse response) {
                         if (response.getErrorCode() == 0) {
-                            mWebContentView.onSuccess("收藏成功");
+                            mWebContentView.onSuccess("收藏成功", Constant.COLLECT);
                         } else {
-                            mWebContentView.onError(response.getErrorMsg());
+                            mWebContentView.onError(response.getErrorMsg().toString());
                         }
                     }
                 });
@@ -64,9 +65,9 @@ public class WebPresenter extends BasePresenter<WebContentView> {
                     @Override
                     public void onsuccess(DataResponse response) {
                         if (response.getErrorCode() == 0) {
-                            mWebContentView.onSuccess("取消收藏成功");
+                            mWebContentView.onSuccess("取消收藏成功", Constant.UNCOLLECT);
                         } else {
-                            mWebContentView.onError(response.getErrorMsg());
+                            mWebContentView.onError(response.getErrorMsg().toString());
                         }
                     }
                 });

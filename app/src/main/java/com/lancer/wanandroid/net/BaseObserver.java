@@ -1,12 +1,14 @@
 package com.lancer.wanandroid.net;
 
 import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.JsonParseException;
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
 import com.lancer.wanandroid.R;
 import com.lancer.wanandroid.util.LogUtil;
-import com.lancer.wanandroid.util.ToastUtils;
+
 
 import org.json.JSONException;
 
@@ -14,6 +16,7 @@ import java.io.InterruptedIOException;
 import java.net.ConnectException;
 import java.net.UnknownHostException;
 import java.text.ParseException;
+import java.util.logging.Logger;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -82,19 +85,19 @@ public abstract class BaseObserver<T> implements Observer<T> {
     public void onException(ExceptionReason reason) {
         switch (reason) {
             case CONNECT_ERROR:
-                ToastUtils.showShort(mContext, R.string.connect_error);
+                Log.d("BaseObserver_error", "连接异常");
                 break;
 
             case CONNECT_TIMEOUT:
-                ToastUtils.showShort(mContext, R.string.connect_timeout);
+                Log.d("BaseObserver_error", "连接超时");
                 break;
 
             case BAD_NETWORK:
-                ToastUtils.showShort(mContext, R.string.bad_network);
+                Log.d("BaseObserver_error", "网络较差");
                 break;
             case UNKNOWN_ERROR:
             default:
-                ToastUtils.showShort(mContext, R.string.unknown_error);
+                Log.d("BaseObserver_error", "未知错误");
                 break;
         }
     }

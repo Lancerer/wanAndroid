@@ -1,6 +1,8 @@
 package com.lancer.wanandroid.ui.web;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,13 +15,12 @@ import android.widget.Toast;
 import com.just.agentweb.AgentWeb;
 import com.lancer.wanandroid.R;
 import com.lancer.wanandroid.base.BaseFragment;
-import com.lancer.wanandroid.base.BasePresenter;
 import com.lancer.wanandroid.ui.login.LoginFragment;
 import com.lancer.wanandroid.util.Constant;
 import com.lancer.wanandroid.util.Sputils;
 
 /**
- * A simple {@link Fragment} subclass.
+ * a simple {@link Fragment} subclass.
  */
 public class WebFragment extends BaseFragment<WebContentView, WebPresenter> implements View.OnClickListener, WebContentView {
     private static final String URL = "url";
@@ -46,24 +47,6 @@ public class WebFragment extends BaseFragment<WebContentView, WebPresenter> impl
         return R.layout.fragment_web;
     }
 
-    /**
-     * fragment中隐藏toolbar的方法
-     */
-/*
-    @Override
-    public void onResume() {
-        super.onResume();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
-        Log.d("webFragment", "onResume");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-        Log.d("webFragment", "onStop");
-    }
-*/
     @Override
     public void initView(View view) {
         mIvBack = view.findViewById(R.id.iv_back);
@@ -108,21 +91,39 @@ public class WebFragment extends BaseFragment<WebContentView, WebPresenter> impl
         switch (view.getId()) {
             case R.id.iv_back:
                 _mActivity.onBackPressed();
-               /* //todo
-                pop();*/
                 break;
             case R.id.iv_intent:
+                browser();
                 break;
             case R.id.share:
+                share();
                 break;
             case R.id.collect:
                 collect();
-                //todo 收藏功能
                 break;
             default:
                 break;
 
         }
+    }
+
+    /**
+     * 手机自带浏览器打开
+     */
+    private void browser() {
+        Intent intent = new Intent("android.intent.action.VIEW");
+        intent.setData(Uri.parse(mLink));
+        startActivity(intent);
+    }
+
+    /**
+     * 分享功能
+     */
+    private void share() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, mLink);
+        intent.setType("text/plain");
+        startActivity(intent);
     }
 
     /**
@@ -142,7 +143,11 @@ public class WebFragment extends BaseFragment<WebContentView, WebPresenter> impl
 
     @Override
     public void initData() {
-
+        if (mIscollect) {
+            mIvCollect.setImageResource(R.drawable.icon_collectsuccess);
+        } else {
+            mIvCollect.setImageResource(R.drawable.icon_collect);
+        }
     }
 
     @Override
@@ -166,14 +171,19 @@ public class WebFragment extends BaseFragment<WebContentView, WebPresenter> impl
     @Override
     public void onError(String errorMsg) {
         Toast.makeText(_mActivity, errorMsg, Toast.LENGTH_SHORT).show();
-        mIscollect = false;
-        mIvCollect.setImageResource(R.drawable.icon_collect);
     }
 
     @Override
-    public void onSuccess(String msg) {
-        Toast.makeText(_mActivity, msg, Toast.LENGTH_SHORT).show();
-        mIscollect = true;
-        mIvCollect.setImageResource(R.drawable.icon_collectsuccess);
+    public void onSuccess(String msg, int code) {
+        if (code == Constant.COLLECT) {
+            Toast.makeText(_mActivity, msg, Toast.LENGTH_SHORT).show();
+            mIscollect = true;
+            mIvCollect.setImageResource(R.drawable.icon_collectsuccess);
+        } else if (code == Constant.UNCOLLECT) {
+            Toast.makeText(_mActivity, msg, Toast.LENGTH_SHORT).show();
+            mIscollect = false;
+            mIvCollect.setImageResource(R.drawable.icon_collect);
+        }
+
     }
 }

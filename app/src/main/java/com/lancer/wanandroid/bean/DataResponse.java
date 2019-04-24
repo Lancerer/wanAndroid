@@ -9,7 +9,7 @@ package com.lancer.wanandroid.bean;
 public class DataResponse<T> {
     private int errorCode;
     private T data;
-    private String errorMsg;
+    private Object errorMsg;
 
     public int getErrorCode() {
         return errorCode;
@@ -27,11 +27,11 @@ public class DataResponse<T> {
         this.data = data;
     }
 
-    public String getErrorMsg() {
+    public Object getErrorMsg() {
         return errorMsg;
     }
 
-    public void setErrorMsg(String errorMsg) {
+    public void setErrorMsg(Object errorMsg) {
         this.errorMsg = errorMsg;
     }
 }

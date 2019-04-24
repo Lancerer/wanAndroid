@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lancer.wanandroid.R;
@@ -12,6 +14,7 @@ import com.lancer.wanandroid.adapter.HomeAdapter;
 import com.lancer.wanandroid.base.BaseFragment;
 import com.lancer.wanandroid.bean.Article;
 import com.lancer.wanandroid.ui.web.WebFragment;
+import com.lancer.wanandroid.util.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +25,7 @@ import java.util.List;
 public class SearchFragment extends BaseFragment<SearchView, SearchPresenter> implements SearchView {
 
     private android.widget.ImageView mIvBackSearch;
-    private android.widget.EditText mEtSearch;
+    private EditText mEtSearch;
     private android.widget.TextView mTvSearch;
     private android.support.v7.widget.RecyclerView mRecycleSearch;
     private HomeAdapter mHomeAdapter;
@@ -54,7 +57,7 @@ public class SearchFragment extends BaseFragment<SearchView, SearchPresenter> im
         mIvBackSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               _mActivity.onBackPressed();
+                _mActivity.onBackPressed();
             }
         });
         mTvSearch.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +68,6 @@ public class SearchFragment extends BaseFragment<SearchView, SearchPresenter> im
 
                     return;
                 }
-                //todo bug 第二次搜索无响应
                 mPresenter.getSearch(content);
             }
         });
@@ -76,6 +78,7 @@ public class SearchFragment extends BaseFragment<SearchView, SearchPresenter> im
             }
         });
     }
+
     @Override
     public SearchPresenter createPresenter() {
         return new SearchPresenter();
@@ -91,6 +94,16 @@ public class SearchFragment extends BaseFragment<SearchView, SearchPresenter> im
     @Override
     public void setSearch(Article data) {
         mHomeAdapter.setNewData(data.getData().getDatas());
+    }
+
+    @Override
+    public void setError(String errorMsg, int error) {
+        if (error == Constant.ERROR) {
+            Toast.makeText(_mActivity, errorMsg, Toast.LENGTH_SHORT).show();
+        } else if (error == Constant.ERROR_NULL) {
+            Toast.makeText(_mActivity, "暂无相关数据", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 

@@ -1,10 +1,13 @@
 package com.lancer.wanandroid.ui.search;
 
+import android.text.TextUtils;
+
 import com.lancer.wanandroid.base.BasePresenter;
 import com.lancer.wanandroid.bean.Article;
 import com.lancer.wanandroid.net.ApiService;
 import com.lancer.wanandroid.net.BaseObserver;
 import com.lancer.wanandroid.net.RetrofitUtils;
+import com.lancer.wanandroid.util.Constant;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -15,7 +18,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class SearchPresenter extends BasePresenter<SearchView> {
     private SearchView mSearchView;
-    private int page=0;
+    private int page = 0;
 
     @Override
     public SearchView getView() {
@@ -36,15 +39,24 @@ public class SearchPresenter extends BasePresenter<SearchView> {
         if (mSearchView == null) {
             mSearchView = getView();
         }
-            RetrofitUtils.create(ApiService.class)
-                    .getSearchArticles(page, str)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new BaseObserver<Article>() {
-                        @Override
-                        public void onsuccess(Article response) {
+        RetrofitUtils.create(ApiService.class)
+                .getSearchArticles(page, str)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseObserver<Article>() {
+                    @Override
+                    public void onsuccess(Article response) {
+                        if (response.getErrorCode() == 0) {
                             mSearchView.setSearch(response);
+                            if (TextUtils.isEmpty(response.getErrorMsg())) {
+                                mSearchView.setError(response.getErrorMsg(),Constant.ERROR_NULL);
+                            }
+
+                        } else {
+                            mSearchView.setError(response.getErrorMsg(),Constant.ERROR);
                         }
-                    });
+
+                    }
+                });
     }
 }

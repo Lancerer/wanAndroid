@@ -27,10 +27,10 @@ public class Sputils {
         return spBoolean;
     }
 
-    public static void setBoolean(Context context, String key, boolean defValue) {
+    public static void setBoolean(Context context, String key, boolean Value) {
         SharedPreferences sp = context.getSharedPreferences(Constant.CONFIGFILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putBoolean(key, defValue).commit();
+        editor.putBoolean(key, Value).commit();
     }
 
     public static String getString(Context context, String key, String defvalue) {
@@ -39,10 +39,10 @@ public class Sputils {
         return string;
     }
 
-    public static void setString(Context context, String key, String defValue) {
+    public static void setString(Context context, String key, String Value) {
         SharedPreferences sp = context.getSharedPreferences(Constant.CONFIGFILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString(key, defValue).commit();
+        editor.putString(key, Value).commit();
     }
 
 

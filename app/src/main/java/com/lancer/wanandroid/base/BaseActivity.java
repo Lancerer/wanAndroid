@@ -26,13 +26,18 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Suppor
             mPresenter.attachView((V) this);
         }
         initView();
+
+        //fragment重叠bug
+        if (savedInstanceState == null) {
+            initData();
+            initListener();
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        initData();
-        initListener();
+
     }
 
     public void initListener() {

@@ -6,13 +6,21 @@
     android:orientation="vertical"
     tools:context=".ui.login.LoginFragment">
 
+   <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="95dp"
+        android:src="@drawable/cow" />
+
     <TextView
         android:id="@+id/tv_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:padding="5dp"
+        android:padding="10dp"
         android:text="@string/login"
         android:textSize="18sp" />
 
@@ -22,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_login"
         android:gravity="center"
-        android:padding="5dp"
+        android:padding="10dp"
         android:text="@string/my_collect"
         android:textSize="18sp" />
 
@@ -32,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_collect"
         android:gravity="center"
-        android:padding="5dp"
+        android:padding="10dp"
         android:text="@string/aboutme"
         android:textSize="18sp" />
 

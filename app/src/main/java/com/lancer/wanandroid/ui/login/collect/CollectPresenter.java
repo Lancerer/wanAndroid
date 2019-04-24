@@ -36,21 +36,21 @@ public class CollectPresenter extends BasePresenter<CollectView> {
         if (mCollectView == null) {
             mCollectView = getView();
         }
-            RetrofitUtils.create(ApiService.class)
-                    .getCollects(mPage)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new BaseObserver<Article>() {
-                        @Override
-                        public void onsuccess(Article response) {
-                            if(response.getErrorCode()==0){
-                                mCollectView.setArticle(response);
-                            }else {
-                                mCollectView.OnError(response.getErrorMsg());
-                            }
-
+        RetrofitUtils.create(ApiService.class)
+                .getCollects(mPage)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseObserver<Article>() {
+                    @Override
+                    public void onsuccess(Article response) {
+                        if (response.getErrorCode() == 0) {
+                            mCollectView.setArticle(response);
+                        } else {
+                            mCollectView.OnError(response.getErrorMsg());
                         }
-                    });
+
+                    }
+                });
 
     }
 }
