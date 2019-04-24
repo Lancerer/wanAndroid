@@ -62,11 +62,11 @@ public class ProjectFragment extends BaseFragment<ProjectView, ProjectPresenter>
     }
 
     @Override
-    public void setPOrojectTab(ProjectTabBean response) {
-        List<ProjectTabBean.DataBean> datas = response.getData();
+    public void setPOrojectTab(List<ProjectTabBean> response) {
+        List<ProjectTabBean> datas = response;
         List<String> names = new ArrayList<>();
         List<Integer> ids = new ArrayList<>();
-        for (ProjectTabBean.DataBean data : datas) {
+        for (ProjectTabBean data : datas) {
             names.add(data.getName());
             ids.add(data.getId());
         }

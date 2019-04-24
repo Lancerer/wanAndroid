@@ -14,19 +14,19 @@ import java.util.List;
  * desc
  * @author Lancer
  */
-public class KnowledgeAdapter extends BaseQuickAdapter<KnowledgeBean.DataBean, BaseViewHolder> {
+public class KnowledgeAdapter extends BaseQuickAdapter<KnowledgeBean, BaseViewHolder> {
 
-    public KnowledgeAdapter(int layoutResId, @Nullable List<KnowledgeBean.DataBean> data) {
+    public KnowledgeAdapter(int layoutResId, @Nullable List<KnowledgeBean> data) {
         super(layoutResId, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, KnowledgeBean.DataBean item) {
+    protected void convert(BaseViewHolder helper, KnowledgeBean item) {
 
         helper.setText(R.id.tv_title_knowledge, item.getName());
 
         StringBuffer stringBuffer = new StringBuffer();
-        for (KnowledgeBean.DataBean.ChildrenBean childrenBean : item.getChildren()) {
+        for (KnowledgeBean.Children childrenBean : item.getChildren()) {
             stringBuffer.append(childrenBean.getName() + "    ");
         }
 

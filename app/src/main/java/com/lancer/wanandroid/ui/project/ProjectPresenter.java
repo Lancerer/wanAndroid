@@ -1,10 +1,13 @@
 package com.lancer.wanandroid.ui.project;
 
 import com.lancer.wanandroid.base.BasePresenter;
+import com.lancer.wanandroid.bean.DataResponse;
 import com.lancer.wanandroid.bean.ProjectTabBean;
 import com.lancer.wanandroid.net.ApiService;
 import com.lancer.wanandroid.net.BaseObserver;
 import com.lancer.wanandroid.net.RetrofitUtils;
+
+import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -39,10 +42,11 @@ public class ProjectPresenter extends BasePresenter<ProjectView> {
                 .getProjectTab()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseObserver<ProjectTabBean>() {
+                .subscribe(new BaseObserver<DataResponse<List<ProjectTabBean>>>() {
+
                     @Override
-                    public void onsuccess(ProjectTabBean response) {
-                        mProjectView.setPOrojectTab(response);
+                    public void onsuccess(DataResponse<List<ProjectTabBean>> response) {
+                        mProjectView.setPOrojectTab(response.getData());
                     }
                 });
 

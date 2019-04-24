@@ -10,6 +10,8 @@ import com.lancer.wanandroid.bean.ProjectListBean;
 import com.lancer.wanandroid.bean.ProjectTabBean;
 import com.lancer.wanandroid.bean.User;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -32,7 +34,7 @@ public interface ApiService {
      * @return
      */
     @GET("/banner/json")
-    Observable<BannerBean> getBanner();
+    Observable<DataResponse<List<BannerBean>>> getBanner();
 
 
     /**
@@ -42,7 +44,7 @@ public interface ApiService {
      * @return
      */
     @GET("/article/list/{page}/json")
-    Observable<Article> getHomeArticles(@Path("page") int page);
+    Observable<DataResponse<Article>> getHomeArticles(@Path("page") int page);
 
     /**
      * 返回项目分类数据
@@ -50,7 +52,7 @@ public interface ApiService {
      * @return
      */
     @GET("/project/tree/json")
-    Observable<ProjectTabBean> getProjectTab();
+    Observable<DataResponse<List<ProjectTabBean>>> getProjectTab();
 
     /**
      * 获得项目列表数据
@@ -66,7 +68,7 @@ public interface ApiService {
      * @return
      */
     @GET("/tree/json")
-    Observable<KnowledgeBean> getKnowledge();
+    Observable<DataResponse<List<KnowledgeBean>>> getKnowledge();
 
     /**
      * 知识体系下的文章
@@ -76,7 +78,7 @@ public interface ApiService {
      * @return
      */
     @GET("/article/list/{page}/json")
-    Observable<Article> getKnowledgeArticle(@Path("page") int page, @Query("cid") int cid);
+    Observable<DataResponse<Article>> getKnowledgeArticle(@Path("page") int page, @Query("cid") int cid);
 
     /**
      * 导航页数据
@@ -95,7 +97,7 @@ public interface ApiService {
      */
     @POST("/article/query/{page}/json")
     @FormUrlEncoded
-    Observable<Article> getSearchArticles(@Path("page") int page, @Field("k") String k);
+    Observable<DataResponse<Article>> getSearchArticles(@Path("page") int page, @Field("k") String k);
 
     /**
      * 用户登录接口
@@ -128,7 +130,7 @@ public interface ApiService {
      * @return
      */
     @GET("/lg/collect/list/{page}/json")
-    Observable<Article> getCollects(@Path("page") int page);
+    Observable<DataResponse<Article>> getCollects(@Path("page") int page);
 
 
     /**

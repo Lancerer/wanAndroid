@@ -9,334 +9,216 @@ import java.util.List;
  * email:tyk790406977@126.com
  */
 public class Article {
-    private DataBean data;
-    private int errorCode;
-    private String errorMsg;
+    private int offset;
+    private int size;
+    private int total;
+    private int pageCount;
+    private int curPage;
+    private boolean over;
+    private List<DatasBean> datas;
 
-    public DataBean getData() {
-        return data;
+    public int getOffset() {
+        return offset;
     }
 
-    public void setData(DataBean data) {
-        this.data = data;
+    public void setOffset(int offset) {
+        this.offset = offset;
     }
 
-    public int getErrorCode() {
-        return errorCode;
+    public int getSize() {
+        return size;
     }
 
-    public void setErrorCode(int errorCode) {
-        this.errorCode = errorCode;
+    public void setSize(int size) {
+        this.size = size;
     }
 
-    public String getErrorMsg() {
-        return errorMsg;
+    public int getTotal() {
+        return total;
     }
 
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
+    public void setTotal(int total) {
+        this.total = total;
     }
 
-    public static class DataBean {
+    public int getPageCount() {
+        return pageCount;
+    }
 
-        private int curPage;
-        private int offset;
-        private boolean over;
-        private int pageCount;
-        private int size;
-        private int total;
-        private List<DatasBean> datas;
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
 
-        public int getCurPage() {
-            return curPage;
+    public int getCurPage() {
+        return curPage;
+    }
+
+    public void setCurPage(int curPage) {
+        this.curPage = curPage;
+    }
+
+    public boolean isOver() {
+        return over;
+    }
+
+    public void setOver(boolean over) {
+        this.over = over;
+    }
+
+    public List<DatasBean> getDatas() {
+        return datas;
+    }
+
+    public void setDatas(List<DatasBean> datas) {
+        this.datas = datas;
+    }
+
+    public static class DatasBean {
+
+        private int id;
+        private String title;
+        private int chapterId;
+        private String chapterName;
+        private String superChapterName;
+        private String envelopePic;
+        private String link;
+        private String author;
+        private String origin;
+        private long publishTime;
+        private String zan;
+        private String desc;
+        private int visible;
+        private String niceDate;
+        private int courseId;
+        private boolean collect;
+
+        public int getId() {
+            return id;
         }
 
-        public void setCurPage(int curPage) {
-            this.curPage = curPage;
+        public void setId(int id) {
+            this.id = id;
         }
 
-        public int getOffset() {
-            return offset;
+        public String getTitle() {
+            return title;
         }
 
-        public void setOffset(int offset) {
-            this.offset = offset;
+        public void setTitle(String title) {
+            this.title = title;
         }
 
-        public boolean isOver() {
-            return over;
+        public int getChapterId() {
+            return chapterId;
         }
 
-        public void setOver(boolean over) {
-            this.over = over;
+        public void setChapterId(int chapterId) {
+            this.chapterId = chapterId;
         }
 
-        public int getPageCount() {
-            return pageCount;
+        public String getChapterName() {
+            return chapterName;
         }
 
-        public void setPageCount(int pageCount) {
-            this.pageCount = pageCount;
+        public void setChapterName(String chapterName) {
+            this.chapterName = chapterName;
         }
 
-        public int getSize() {
-            return size;
+        public String getsuperChapterName() {
+            return superChapterName;
         }
 
-        public void setSize(int size) {
-            this.size = size;
+        public void setsuperChapterName(String superChapterName) {
+            this.superChapterName = superChapterName;
         }
 
-        public int getTotal() {
-            return total;
+
+        public String getEnvelopePic() {
+            return envelopePic;
         }
 
-        public void setTotal(int total) {
-            this.total = total;
+        public void setEnvelopePic(String envelopePic) {
+            this.envelopePic = envelopePic;
         }
 
-        public List<DatasBean> getDatas() {
-            return datas;
+        public String getLink() {
+            return link;
         }
 
-        public void setDatas(List<DatasBean> datas) {
-            this.datas = datas;
+        public void setLink(String link) {
+            this.link = link;
         }
 
-        public static class DatasBean {
-            private String apkLink;
-            private String author;
-            private int chapterId;
-            private String chapterName;
-            private boolean collect;
-            private int courseId;
-            private String desc;
-            private String envelopePic;
-            private boolean fresh;
-            private int id;
-            private String link;
-            private String niceDate;
-            private String origin;
-            private String projectLink;
-            private long publishTime;
-            private int superChapterId;
-            private String superChapterName;
-            private String title;
-            private int type;
-            private int userId;
-            private int visible;
-            private int zan;
-            private List<TagsBean> tags;
+        public String getAuthor() {
+            return author;
+        }
 
-            public String getApkLink() {
-                return apkLink;
-            }
+        public void setAuthor(String author) {
+            this.author = author;
+        }
 
-            public void setApkLink(String apkLink) {
-                this.apkLink = apkLink;
-            }
+        public String getOrigin() {
+            return origin;
+        }
 
-            public String getAuthor() {
-                return author;
-            }
+        public void setOrigin(String origin) {
+            this.origin = origin;
+        }
 
-            public void setAuthor(String author) {
-                this.author = author;
-            }
+        public long getPublishTime() {
+            return publishTime;
+        }
 
-            public int getChapterId() {
-                return chapterId;
-            }
+        public void setPublishTime(long publishTime) {
+            this.publishTime = publishTime;
+        }
 
-            public void setChapterId(int chapterId) {
-                this.chapterId = chapterId;
-            }
+        public String getZan() {
+            return zan;
+        }
 
-            public String getChapterName() {
-                return chapterName;
-            }
+        public void setZan(String zan) {
+            this.zan = zan;
+        }
 
-            public void setChapterName(String chapterName) {
-                this.chapterName = chapterName;
-            }
+        public String getDesc() {
+            return desc;
+        }
 
-            public boolean isCollect() {
-                return collect;
-            }
+        public void setDesc(String desc) {
+            this.desc = desc;
+        }
 
-            public void setCollect(boolean collect) {
-                this.collect = collect;
-            }
+        public int getVisible() {
+            return visible;
+        }
 
-            public int getCourseId() {
-                return courseId;
-            }
+        public void setVisible(int visible) {
+            this.visible = visible;
+        }
 
-            public void setCourseId(int courseId) {
-                this.courseId = courseId;
-            }
+        public String getNiceDate() {
+            return niceDate;
+        }
 
-            public String getDesc() {
-                return desc;
-            }
+        public void setNiceDate(String niceDate) {
+            this.niceDate = niceDate;
+        }
 
-            public void setDesc(String desc) {
-                this.desc = desc;
-            }
+        public int getCourseId() {
+            return courseId;
+        }
 
-            public String getEnvelopePic() {
-                return envelopePic;
-            }
+        public void setCourseId(int courseId) {
+            this.courseId = courseId;
+        }
 
-            public void setEnvelopePic(String envelopePic) {
-                this.envelopePic = envelopePic;
-            }
+        public boolean isCollect() {
+            return collect;
+        }
 
-            public boolean isFresh() {
-                return fresh;
-            }
-
-            public void setFresh(boolean fresh) {
-                this.fresh = fresh;
-            }
-
-            public int getId() {
-                return id;
-            }
-
-            public void setId(int id) {
-                this.id = id;
-            }
-
-            public String getLink() {
-                return link;
-            }
-
-            public void setLink(String link) {
-                this.link = link;
-            }
-
-            public String getNiceDate() {
-                return niceDate;
-            }
-
-            public void setNiceDate(String niceDate) {
-                this.niceDate = niceDate;
-            }
-
-            public String getOrigin() {
-                return origin;
-            }
-
-            public void setOrigin(String origin) {
-                this.origin = origin;
-            }
-
-            public String getProjectLink() {
-                return projectLink;
-            }
-
-            public void setProjectLink(String projectLink) {
-                this.projectLink = projectLink;
-            }
-
-            public long getPublishTime() {
-                return publishTime;
-            }
-
-            public void setPublishTime(long publishTime) {
-                this.publishTime = publishTime;
-            }
-
-            public int getSuperChapterId() {
-                return superChapterId;
-            }
-
-            public void setSuperChapterId(int superChapterId) {
-                this.superChapterId = superChapterId;
-            }
-
-            public String getSuperChapterName() {
-                return superChapterName;
-            }
-
-            public void setSuperChapterName(String superChapterName) {
-                this.superChapterName = superChapterName;
-            }
-
-            public String getTitle() {
-                return title;
-            }
-
-            public void setTitle(String title) {
-                this.title = title;
-            }
-
-            public int getType() {
-                return type;
-            }
-
-            public void setType(int type) {
-                this.type = type;
-            }
-
-            public int getUserId() {
-                return userId;
-            }
-
-            public void setUserId(int userId) {
-                this.userId = userId;
-            }
-
-            public int getVisible() {
-                return visible;
-            }
-
-            public void setVisible(int visible) {
-                this.visible = visible;
-            }
-
-            public int getZan() {
-                return zan;
-            }
-
-            public void setZan(int zan) {
-                this.zan = zan;
-            }
-
-            public List<TagsBean> getTags() {
-                return tags;
-            }
-
-            public void setTags(List<TagsBean> tags) {
-                this.tags = tags;
-            }
-
-            public static class TagsBean {
-                /**
-                 * name : 项目
-                 * url : /project/list/1?cid=294
-                 */
-
-                private String name;
-                private String url;
-
-                public String getName() {
-                    return name;
-                }
-
-                public void setName(String name) {
-                    this.name = name;
-                }
-
-                public String getUrl() {
-                    return url;
-                }
-
-                public void setUrl(String url) {
-                    this.url = url;
-                }
-            }
+        public void setCollect(boolean collect) {
+            this.collect = collect;
         }
     }
 }

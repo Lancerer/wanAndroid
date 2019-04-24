@@ -2,6 +2,7 @@ package com.lancer.wanandroid.ui.login.collect;
 
 import com.lancer.wanandroid.base.BasePresenter;
 import com.lancer.wanandroid.bean.Article;
+import com.lancer.wanandroid.bean.DataResponse;
 import com.lancer.wanandroid.net.ApiService;
 import com.lancer.wanandroid.net.BaseObserver;
 import com.lancer.wanandroid.net.RetrofitUtils;
@@ -40,15 +41,15 @@ public class CollectPresenter extends BasePresenter<CollectView> {
                 .getCollects(mPage)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseObserver<Article>() {
-                    @Override
-                    public void onsuccess(Article response) {
-                        if (response.getErrorCode() == 0) {
-                            mCollectView.setArticle(response);
-                        } else {
-                            mCollectView.OnError(response.getErrorMsg());
-                        }
+                .subscribe(new BaseObserver<DataResponse<Article>>() {
 
+                    @Override
+                    public void onsuccess(DataResponse<Article> response) {
+                        if (response.getErrorCode() == 0) {
+                            mCollectView.setArticle(response.getData());
+                        } else {
+                            mCollectView.OnError(response.getErrorMsg().toString());
+                        }
                     }
                 });
 

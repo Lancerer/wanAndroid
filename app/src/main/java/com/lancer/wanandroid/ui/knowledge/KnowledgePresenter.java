@@ -1,10 +1,13 @@
 package com.lancer.wanandroid.ui.knowledge;
 
 import com.lancer.wanandroid.base.BasePresenter;
+import com.lancer.wanandroid.bean.DataResponse;
 import com.lancer.wanandroid.bean.KnowledgeBean;
 import com.lancer.wanandroid.net.ApiService;
 import com.lancer.wanandroid.net.BaseObserver;
 import com.lancer.wanandroid.net.RetrofitUtils;
+
+import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -41,10 +44,11 @@ public class KnowledgePresenter extends BasePresenter<KnowledgeView> {
                 .getKnowledge()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseObserver<KnowledgeBean>() {
+                .subscribe(new BaseObserver<DataResponse<List<KnowledgeBean>>>() {
+
                     @Override
-                    public void onsuccess(KnowledgeBean response) {
-                        mKnowledgeView.setKnowledge(response);
+                    public void onsuccess(DataResponse<List<KnowledgeBean>> response) {
+                        mKnowledgeView.setKnowledge(response.getData());
                     }
                 });
 

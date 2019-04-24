@@ -39,7 +39,7 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
     private android.support.v7.widget.RecyclerView mRecycleHome;
     private List<String> mBanner_title;
     private List<String> mBanner_imgpaths;
-    private List<Article.DataBean.DatasBean> mArticles;
+    private List<Article.DatasBean> mArticles;
     private Banner mBanner;
     private View mBannerView;
     private HomeAdapter mHomeAdapter;
@@ -114,12 +114,15 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
      * @param data
      */
     @Override
-    public void setBanner(final List<BannerBean.DataBean> data) {
-        for (int i = 0; i < data.size(); i++) {
+    public void setBanner(final List<BannerBean> data) {
+        /*for (int i = 0; i < data.size(); i++) {
             mBanner_title.add(data.get(i).getTitle());
-            mBanner_imgpaths.add(data.get(i).getImagePath());
+            mBanner_imgpaths.add(data.get(i).getIamgePath());
+        }*/
+        for (BannerBean bannerBean : data) {
+            mBanner_title.add(bannerBean.getTitle());
+            mBanner_imgpaths.add(bannerBean.getImagePath());
         }
-
         mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         mBanner.setBannerTitles(mBanner_title);
         mBanner.setImageLoader(new MyLoader());
@@ -149,11 +152,11 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
 
         if (type == Constant.STATUS_NORMAL) {
             //todo setNewData方法类似于add
-            mHomeAdapter.setNewData(response.getData().getDatas());
+            mHomeAdapter.setNewData(response.getDatas());
             mHomeAdapter.loadMoreComplete();
         } else if (type == Constant.STATUS_LOAD_MORE) {
             //todo addData方法类似于addAll，就是加载更多
-            mHomeAdapter.addData(response.getData().getDatas());
+            mHomeAdapter.addData(response.getDatas());
             mHomeAdapter.loadMoreComplete();
         }
     }

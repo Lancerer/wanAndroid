@@ -16,13 +16,13 @@ import java.util.List;
  * created by Lancer on 2019/1/6
  * desc
  */
-public class HomeAdapter extends BaseQuickAdapter<Article.DataBean.DatasBean, BaseViewHolder> {
-    public HomeAdapter(int layoutResId, @Nullable List<Article.DataBean.DatasBean> data) {
+public class HomeAdapter extends BaseQuickAdapter<Article.DatasBean, BaseViewHolder> {
+    public HomeAdapter(int layoutResId, @Nullable List<Article.DatasBean> data) {
         super(layoutResId, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, Article.DataBean.DatasBean item) {
+    protected void convert(BaseViewHolder helper, Article.DatasBean item) {
         helper.setText(R.id.tv_title, item.getTitle());
         helper.setText(R.id.tv_author, item.getAuthor());
         helper.setText(R.id.tv_time, item.getNiceDate());
@@ -33,7 +33,7 @@ public class HomeAdapter extends BaseQuickAdapter<Article.DataBean.DatasBean, Ba
             textview.setVisibility(View.VISIBLE);
             textview.setText(item.getDesc());
         }
-        helper.setText(R.id.tv_tag, item.getSuperChapterName() + "/" + item.getChapterName());
+        helper.setText(R.id.tv_tag, item.getsuperChapterName() + "/" + item.getChapterName());
 
     }
 }

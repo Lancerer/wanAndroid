@@ -29,7 +29,7 @@ public class CollectFragment extends BaseFragment<CollectView, CollectPresenter>
     private android.support.v4.widget.SwipeRefreshLayout mRefreshCollect;
     private android.support.v7.widget.RecyclerView mRecycleCollect;
     private HomeAdapter mHomeAdapter;
-    private List<Article.DataBean.DatasBean> mLists;
+    private List<Article.DatasBean> mLists;
 
     @Override
     public int initLayout() {
@@ -68,7 +68,7 @@ public class CollectFragment extends BaseFragment<CollectView, CollectPresenter>
 
     @Override
     public void setArticle(Article response) {
-        mHomeAdapter.setNewData(response.getData().getDatas());
+        mHomeAdapter.setNewData(response.getDatas());
     }
 
     @Override

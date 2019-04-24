@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import com.lancer.wanandroid.base.BasePresenter;
 import com.lancer.wanandroid.bean.Article;
+import com.lancer.wanandroid.bean.DataResponse;
 import com.lancer.wanandroid.net.ApiService;
 import com.lancer.wanandroid.net.BaseObserver;
 import com.lancer.wanandroid.net.RetrofitUtils;
@@ -43,19 +44,18 @@ public class SearchPresenter extends BasePresenter<SearchView> {
                 .getSearchArticles(page, str)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseObserver<Article>() {
+                .subscribe(new BaseObserver<DataResponse<Article>>() {
                     @Override
-                    public void onsuccess(Article response) {
+                    public void onsuccess(DataResponse<Article> response) {
                         if (response.getErrorCode() == 0) {
-                            mSearchView.setSearch(response);
-                            if (TextUtils.isEmpty(response.getErrorMsg())) {
-                                mSearchView.setError(response.getErrorMsg(),Constant.ERROR_NULL);
+                            mSearchView.setSearch(response.getData());
+                            if (TextUtils.isEmpty(response.getErrorMsg().toString())) {
+                                mSearchView.setError(response.getErrorMsg().toString(),Constant.ERROR_NULL);
                             }
 
                         } else {
-                            mSearchView.setError(response.getErrorMsg(),Constant.ERROR);
+                            mSearchView.setError(response.getErrorMsg().toString(),Constant.ERROR);
                         }
-
                     }
                 });
     }

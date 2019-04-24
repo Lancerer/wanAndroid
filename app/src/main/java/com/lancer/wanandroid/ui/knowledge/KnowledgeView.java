@@ -12,5 +12,5 @@ import java.util.List;
  */
 public interface KnowledgeView {
 
-    void setKnowledge(KnowledgeBean data);
+    void setKnowledge(List<KnowledgeBean>data);
 }

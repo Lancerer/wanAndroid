@@ -2,6 +2,7 @@ package com.lancer.wanandroid.ui.knowledge;
 
 import com.lancer.wanandroid.base.BasePresenter;
 import com.lancer.wanandroid.bean.Article;
+import com.lancer.wanandroid.bean.DataResponse;
 import com.lancer.wanandroid.net.ApiService;
 import com.lancer.wanandroid.net.BaseObserver;
 import com.lancer.wanandroid.net.RetrofitUtils;
@@ -40,10 +41,11 @@ public class KnowledgeArticlePresenter extends BasePresenter<KnowledgeArticleVie
                     .getKnowledgeArticle(page, id)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new BaseObserver<Article>() {
+                    .subscribe(new BaseObserver<DataResponse<Article>>() {
+
                         @Override
-                        public void onsuccess(Article response) {
-                            mKnowledgeArticleView.setArtilce(response);
+                        public void onsuccess(DataResponse<Article> response) {
+                            mKnowledgeArticleView.setArtilce(response.getData());
                         }
                     });
 

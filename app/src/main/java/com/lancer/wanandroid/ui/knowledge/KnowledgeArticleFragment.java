@@ -33,7 +33,7 @@ public class KnowledgeArticleFragment extends BaseFragment<KnowledgeArticleView,
     private android.support.v7.widget.RecyclerView mRecycleKnowledgeArticle;
     private int mId;
     private HomeAdapter mHomeAdapter;
-    private List<Article.DataBean.DatasBean> mList;
+    private List<Article.DatasBean> mList;
 
     @Override
     public int initLayout() {
@@ -88,7 +88,7 @@ public class KnowledgeArticleFragment extends BaseFragment<KnowledgeArticleView,
 
     @Override
     public void setArtilce(Article response) {
-        mHomeAdapter.setNewData(response.getData().getDatas());
+        mHomeAdapter.setNewData(response.getDatas());
     }
 
     @Override

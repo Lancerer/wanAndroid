@@ -14,7 +14,7 @@ public interface HomeView {
     /**
      * @param data
      */
-    void setBanner(List<BannerBean.DataBean> data);
+    void setBanner(List<BannerBean> data);
 
     /**
      * @param response

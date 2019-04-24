@@ -3,10 +3,13 @@ package com.lancer.wanandroid.ui.home;
 import com.lancer.wanandroid.base.BasePresenter;
 import com.lancer.wanandroid.bean.Article;
 import com.lancer.wanandroid.bean.BannerBean;
+import com.lancer.wanandroid.bean.DataResponse;
 import com.lancer.wanandroid.net.ApiService;
 import com.lancer.wanandroid.net.BaseObserver;
 import com.lancer.wanandroid.net.RetrofitUtils;
 import com.lancer.wanandroid.util.Constant;
+
+import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -49,9 +52,9 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 .getBanner()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseObserver<BannerBean>() {
+                .subscribe(new BaseObserver<DataResponse<List<BannerBean>>>() {
                     @Override
-                    public void onsuccess(BannerBean response) {
+                    public void onsuccess(DataResponse<List<BannerBean>> response) {
                         mHomeView.setBanner(response.getData());
                     }
                 });
@@ -66,13 +69,14 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 .getHomeArticles(mPage)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseObserver<Article>() {
+                .subscribe(new BaseObserver<DataResponse<Article>>() {
+
                     @Override
-                    public void onsuccess(Article response) {
+                    public void onsuccess(DataResponse<Article> response) {
                         if (isLoadmore) {
-                            mHomeView.setHomeArticle(response, Constant.STATUS_LOAD_MORE);
+                            mHomeView.setHomeArticle(response.getData(), Constant.STATUS_LOAD_MORE);
                         } else {
-                            mHomeView.setHomeArticle(response, Constant.STATUS_NORMAL);
+                            mHomeView.setHomeArticle(response.getData(), Constant.STATUS_NORMAL);
                         }
                     }
                 });

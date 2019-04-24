@@ -30,8 +30,8 @@ public class KnowledgeFragment extends BaseFragment<KnowledgeView, KnowledgePres
 
     private android.support.v4.widget.SwipeRefreshLayout mRefreshKnowledge;
     private android.support.v7.widget.RecyclerView mRecycleKnowledge;
-    private List<KnowledgeBean.DataBean> mList;
-    private List<KnowledgeBean.DataBean> KnowledgesMsg;
+    private List<KnowledgeBean> mList;
+    private List<KnowledgeBean> KnowledgesMsg;
     private KnowledgeAdapter mKnowledgeAdapter;
 
     @Override
@@ -77,10 +77,10 @@ public class KnowledgeFragment extends BaseFragment<KnowledgeView, KnowledgePres
     }
 
     @Override
-    public void setKnowledge(KnowledgeBean data) {
-        mKnowledgeAdapter.setNewData(data.getData());
+    public void setKnowledge(List<KnowledgeBean> data) {
+        mKnowledgeAdapter.setNewData(data);
         mKnowledgeAdapter.loadMoreComplete();
-        KnowledgesMsg = data.getData();
+        KnowledgesMsg = data;
     }
 
     @Override
@@ -94,7 +94,7 @@ public class KnowledgeFragment extends BaseFragment<KnowledgeView, KnowledgePres
         List<Integer> ids = new ArrayList<Integer>();
         //一级菜单名称
         String mFirstName = KnowledgesMsg.get(position).getName();
-        for (KnowledgeBean.DataBean.ChildrenBean childrenBean : KnowledgesMsg.get(position).getChildren()) {
+        for (KnowledgeBean.Children childrenBean : KnowledgesMsg.get(position).getChildren()) {
             names.add(childrenBean.getName());
             ids.add(childrenBean.getId());
         }

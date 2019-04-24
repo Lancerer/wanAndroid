@@ -29,7 +29,7 @@ public class SearchFragment extends BaseFragment<SearchView, SearchPresenter> im
     private android.widget.TextView mTvSearch;
     private android.support.v7.widget.RecyclerView mRecycleSearch;
     private HomeAdapter mHomeAdapter;
-    private List<Article.DataBean.DatasBean> mLists;
+    private List<Article.DatasBean> mLists;
 
     @Override
     public int initLayout() {
@@ -93,7 +93,7 @@ public class SearchFragment extends BaseFragment<SearchView, SearchPresenter> im
 
     @Override
     public void setSearch(Article data) {
-        mHomeAdapter.setNewData(data.getData().getDatas());
+        mHomeAdapter.setNewData(data.getDatas());
     }
 
     @Override
